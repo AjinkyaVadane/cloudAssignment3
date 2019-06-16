@@ -27,6 +27,8 @@ def sqlConnect():
 @app.route("/client_homePage" , methods=['GET'])
 def routerFunction():
     if request.args.get('form') == 'Submit':
+        db = sqlConnect()
+        # cursor = db.cursor()
         # mag = request.args.get('eathquake_mag')
         # oper = request.args.get('symbol_operator')
         # print(oper)

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import pypyodbc
 import pygal
 import numpy as np
+from sklearn.cluster import KMeans
 import mysql.connector
 import redis
 from scipy import stats

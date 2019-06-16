@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify
-import pypyodbc
 import pyodbc
 import pygal
 import numpy as np

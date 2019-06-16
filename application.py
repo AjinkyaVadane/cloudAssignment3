@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-import pypyodbc
+import pyodbc
 import redis
 from flask import request
 import os
@@ -25,31 +25,39 @@ def hello_world():
 
 # method to connect to Db
 def sqlConnect():
-    cnxn = pypyodbc.connect(
-        'Driver={ODBC Driver 13 for SQL Server};Server=tcp:mysqlserver09.database.windows.net,1433;Database=AKVDB;Uid=azureuser@mysqlserver09;Pwd=12345Ajuvad')
+    server = 'mysqlserver09.database.windows.net,1433'
+    database = 'AKVDB'
+    username = 'azureuser@mysqlserver09'
+    password = '12345Ajuvad'
+    driver = '{ODBC Driver 17 for SQL Server}'
+    cnxn = pyodbc.connect(
+        'DRIVER=' + driver + ';SERVER=' + server + ';PORT=1433;DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+    #cursor = cnxn.cursor()
+    # cnxn = pypyodbc.connect(
+    #     'Driver={ODBC Driver 13 for SQL Server};Server=tcp:mysqlserver09.database.windows.net,1433;Database=AKVDB;Uid=azureuser@mysqlserver09;Pwd=12345Ajuvad')
     return cnxn
 
 
 @app.route("/client_homePage" , methods=['GET'])
 def routerFunction():
     if request.args.get('form') == 'Submit':
-        db = sqlConnect()
-        # cursor = db.cursor()
-        # mag = request.args.get('eathquake_mag')
-        # oper = request.args.get('symbol_operator')
-        # print(oper)
-        # print(mag)
-        # # connect to db
         # db = sqlConnect()
         # cursor = db.cursor()
-        # # query = '''SELECT * FROM BVC79655.TBEARTHQUAKE WHERE "mag"'''+oper+mag
-        # query = '''SELECT * FROM earthquakeAssignment3 WHERE "mag"'''+oper+mag
-        # print(query)
-        # cursor.execute(query)
-        # row = cursor.fetchall()
-        # # ibm_db.bind_param(stmt, 1, name)
-        #return str(row)
-        return "Hello Ajinkya You are doing great"
+        mag = request.args.get('eathquake_mag')
+        oper = request.args.get('symbol_operator')
+        print(oper)
+        print(mag)
+        # connect to db
+        db = sqlConnect()
+        cursor = db.cursor()
+        # query = '''SELECT * FROM BVC79655.TBEARTHQUAKE WHERE "mag"'''+oper+mag
+        query = '''SELECT * FROM earthquakeAssignment3 WHERE "mag"'''+oper+mag
+        print(query)
+        cursor.execute(query)
+        row = cursor.fetchall()
+        # ibm_db.bind_param(stmt, 1, name)
+        return str(row)
+        # return "Hello Ajinkya You are doing great"
 
 #
 # if __name__ == "__main__":

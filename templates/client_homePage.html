@@ -11,6 +11,7 @@
 		<h1>
 			1001657016
 		</h1>
+        <!-- Checking connnection -->
     <p>
         <div style="background-color: lightgreen">
             <form action="/client_homePage" method="GET">
@@ -31,6 +32,18 @@
 
 
         </div>
+    </p>
+
+
+        <!-- Adding data to redis cache -->
+    <p>
+        <div style = "background-color: cadetblue">
+            <form action="client_homePage" method="GET">
+                Enter Magnitude:<input type="text" name = "mag">
+             <input type="submit" name="redis_cache_load" value="redis_cache_load">
+            </form>
+        </div>
+
     </p>
     </body>
 </html>

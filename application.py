@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import pyodbc
 import redis
 from flask import request
+import time
 import os
 
 
@@ -12,7 +13,7 @@ import os
 
 # redis connection code
 r = redis.StrictRedis(host='redisCacheAssignemnt3.redis.cache.windows.net',
-        port=6380, password='CK6g5axYGYf4e0T08H9vBc6+obM7GtWJfZOPqrGgkBE=', ssl=True)
+                      port=6380, password='CK6g5axYGYf4e0T08H9vBc6+obM7GtWJfZOPqrGgkBE=', ssl=True)
 
 
 
@@ -58,6 +59,69 @@ def routerFunction():
         # ibm_db.bind_param(stmt, 1, name)
         return str(row)
         # return "Hello Ajinkya You are doing great"
+
+
+    if request.args.get('redis_cache_load') == 'redis_cache_load':
+        cache = "mycache"
+        magnitudeVal = request.args.get('mag')
+        finalList = []
+        # connect to db
+        db = sqlConnect()
+        cursor = db.cursor()
+        queryString = "select * from earthquakeAssignment3 where mag > 6"
+        # r.delete(cache)
+        # print("deleted cache")
+        if r.get(cache) == None:
+            startTime = time.time()
+            cursor.execute(queryString)
+            data = cursor.fetchall()
+            endTime = time.time()
+            execTime = endTime - startTime
+            print('This is your data',data)
+            data_string = data
+            r.set(cache, str(data_string)) #redis requires data to be in Convert to a byte, string or number first.
+            finalList = data
+            print("No Cache")
+            print("No cache Time : ", execTime)
+            isCacheOn = 'No cache'
+        else:
+            startTime = time.time()
+            data1 = r.get(cache)
+            endTime = time.time()
+            execTime = endTime - startTime
+            print("Cache Time is",execTime)
+            data = data1
+            print(data)
+            print("Cache")
+            print("Cache Time is", execTime)
+            isCacheOn = 'In cache'
+        db.close()
+        return render_template("table.html", data = data, timetaken = str(execTime) , isCacheOn = isCacheOn)
+        #return str(data)
+
+
+        # cache = "mycache"
+        # start_t = time.time()
+        # query = "select * from earthquakeAssignment3"
+        # if pickle.get(cache):
+        #     t = "with"
+        #     print(t)
+        #     isCache = 'with Cache'
+        #
+        #     rows = pickle.loads(pickle.get(cache))
+        #     pickle.delete(cache)
+        #
+        # else:
+        #     t = "without"
+        #     print(t)
+        #     db = sqlConnect()
+        #     cursor = db.cursor()
+        #     cursor.execute(query)
+        #     rows = cursor.fetchall()
+        #     pickle.set(cache, pickle.dump(rows))
+        # end_t = time.time() - start_t
+        # print(end_t)
+        # return render_template("table.html", data=t, stime=end_t)
 
 #
 # if __name__ == "__main__":

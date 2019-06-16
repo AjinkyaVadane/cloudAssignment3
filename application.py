@@ -2,7 +2,13 @@ from flask import Flask, render_template, request, jsonify
 import pypyodbc
 import redis
 from flask import request
+import os
 
+
+
+
+port = int(os.getenv("VCAP_APP_PORT"))
+#port = int(os.getenv('PORT', 5000))
 
 # redis connection code
 r = redis.StrictRedis(host='redisCacheAssignemnt3.redis.cache.windows.net',
@@ -44,4 +50,9 @@ def routerFunction():
         # # ibm_db.bind_param(stmt, 1, name)
         #return str(row)
         return "Hello Ajinkya You are doing great"
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=port, debug=False)
+
 

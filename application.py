@@ -1,13 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 import pyodbc
-import pygal
-import numpy as np
-import mysql.connector
 import redis
-from scipy import stats
-import pandas as pd
 from flask import request
-import sqlite3 as sql
+
 
 # redis connection code
 r = redis.StrictRedis(host='redisCacheAssignemnt3.redis.cache.windows.net',

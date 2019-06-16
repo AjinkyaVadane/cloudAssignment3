@@ -1,16 +1,6 @@
-click
-Flask
-itsdangerous
-Jinja2
-MarkupSafe
-Werkzeug
-pyodbc
-redis
-pygal
-scipy
-sqlite3
-pandas
-mysql
-numpy
+Flask==0.12.2
+pyodbc==4.0.26
+redis==3.2.1
+
 
 

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-import pyodbc
+import pypyodbc
 import redis
 from flask import request
 
@@ -19,7 +19,7 @@ def hello_world():
 
 # method to connect to Db
 def sqlConnect():
-    cnxn = pyodbc.connect(
+    cnxn = pypyodbc.connect(
         'Driver={ODBC Driver 13 for SQL Server};Server=tcp:mysqlserver09.database.windows.net,1433;Database=AKVDB;Uid=azureuser@mysqlserver09;Pwd=12345Ajuvad;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;')
     return cnxn
 

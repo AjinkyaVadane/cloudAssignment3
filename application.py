@@ -7,7 +7,7 @@ import os
 
 
 
-port = int(os.getenv("VCAP_APP_PORT"))
+#port = int(os.getenv("VCAP_APP_PORT"))
 #port = int(os.getenv('PORT', 5000))
 
 # redis connection code
@@ -51,8 +51,8 @@ def routerFunction():
         #return str(row)
         return "Hello Ajinkya You are doing great"
 
-
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=port, debug=False)
+#
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0', port=port, debug=False)
 
 

@@ -27,18 +27,19 @@ def sqlConnect():
 @app.route("/client_homePage" , methods=['GET'])
 def routerFunction():
     if request.args.get('form') == 'Submit':
-        mag = request.args.get('eathquake_mag')
-        oper = request.args.get('symbol_operator')
-        print(oper)
-        print(mag)
-        # connect to db
-        db = sqlConnect()
-        cursor = db.cursor()
-        # query = '''SELECT * FROM BVC79655.TBEARTHQUAKE WHERE "mag"'''+oper+mag
-        query = '''SELECT * FROM earthquakeAssignment3 WHERE "mag"'''+oper+mag
-        print(query)
-        cursor.execute(query)
-        row = cursor.fetchall()
-        # ibm_db.bind_param(stmt, 1, name)
-        return str(row)
+        # mag = request.args.get('eathquake_mag')
+        # oper = request.args.get('symbol_operator')
+        # print(oper)
+        # print(mag)
+        # # connect to db
+        # db = sqlConnect()
+        # cursor = db.cursor()
+        # # query = '''SELECT * FROM BVC79655.TBEARTHQUAKE WHERE "mag"'''+oper+mag
+        # query = '''SELECT * FROM earthquakeAssignment3 WHERE "mag"'''+oper+mag
+        # print(query)
+        # cursor.execute(query)
+        # row = cursor.fetchall()
+        # # ibm_db.bind_param(stmt, 1, name)
+        #return str(row)
+        return "Hello Ajinkya You are doing great"
 

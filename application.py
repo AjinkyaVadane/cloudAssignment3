@@ -8,8 +8,6 @@ from datetime import datetime
 from datetime import timedelta
 
 
-
-
 #port = int(os.getenv("VCAP_APP_PORT"))
 #port = int(os.getenv('PORT', 5000))
 
@@ -41,39 +39,39 @@ def sqlConnect():
 #function to check in cache
 def readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString):
     if r.get(cache) == None:
-        startTime = time.time()
+        #startTime = time.time()
+        print(queryString)
         cursor.execute(queryString)
         data = cursor.fetchall()
-        print(type(data))
-        endTime = time.time()
-        execTime = endTime - startTime
-        print('This is your data', data)
+        #endTime = time.time()
+        #execTime = endTime - startTime
         data_string = data
         #r.rpush(cache, data)
         r.set(cache, str(data_string))  # redis requires data to be in Convert to a byte, string or number first.
         finalList = data
         print("No Cache")
-        print("No cache Time : ", execTime)
+        #print("No cache Time : ", execTime)
         isCacheOn = 'No cache'
 
     else:
-        startTime = time.time()
+        #startTime = time.time()
         data1 = r.get(cache)
-        endTime = time.time()
-        execTime = endTime - startTime
-        print("Cache Time is", execTime)
+        #endTime = time.time()
+        #execTime = endTime - startTime
+        #print("Cache Time is", execTime)
         data1 = str(data1)
         data = data1
         print("Cache")
-        print("Cache Time is", execTime)
+        #print("Cache Time is", execTime)
         isCacheOn = 'In cache'
         isCacheOnboolean = True
-    return data, isCacheOnboolean, execTime, isCacheOn
+    return data, isCacheOnboolean, isCacheOn
 
 #delete Cache
 def deleteCache(delete_cache_string):
     r.delete(delete_cache_string)
     return delete_cache_string
+
 
 
 @app.route("/client_homePage" , methods=['GET'])
@@ -85,21 +83,34 @@ def routerFunction():
         deleteCache(delete_cache_string)
         return "deleted cache  "+delete_cache_string
 
+
+    if request.args.get('clear_cache') == 'clear_cache':
+        r.flushdb()
+        return "Flush Redis"
+
+
     if request.args.get('form') == 'Submit':
         isCacheOnboolean = False
-        cache = "mycache1"
         # db = sqlConnect()
         # cursor = db.cursor()
         mag = request.args.get('eathquake_mag')
         oper = request.args.get('symbol_operator')
+        count = int(request.args.get('count_from_user'))
+        cache = "mycache1"+oper+mag
+        print('This is cache name for your input', cache)
         print(oper)
         print(mag)
         # connect to db
         db = sqlConnect()
         cursor = db.cursor()
-        # query = '''SELECT * FROM BVC79655.TBEARTHQUAKE WHERE "mag"'''+oper+mag
-        queryString = '''SELECT * FROM earthquakeAssignment3 WHERE "mag"'''+oper+mag
-        data, isCacheOnboolean, execTime, isCacheOn = readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString)
+        #For (count)
+        startTime = time.time()
+        for i in range(count):
+            queryString = '''SELECT * FROM earthquakeAssignment3 WHERE "mag"'''+oper+mag
+            data, isCacheOnboolean, isCacheOn = readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString)
+            print('.......this is i............',i)
+        endTime = time.time()
+        execTime = endTime - startTime
         db.close()
         if (isCacheOnboolean):
             return render_template("cachetable.html", data=data, timetaken=str(execTime), isCacheOn=isCacheOn)
@@ -198,11 +209,16 @@ def routerFunction():
         cache = "mycache5"
         mag1 = request.args.get('mag1')
         mag2 = request.args.get('mag2')
+        count = int(request.args.get('count_from_user'))
         db = sqlConnect()
         cursor = db.cursor()
-        queryString = '''SELECT * FROM earthquakeAssignment3 WHERE "mag" BETWEEN ''' + mag1 +''' and ''' +mag2
-        data, isCacheOnboolean, execTime, isCacheOn = readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString)
+        startTime =time.time()
+        for i in range(count):
+            queryString = '''SELECT * FROM earthquakeAssignment3 WHERE "mag" BETWEEN ''' + mag1 +''' and ''' +mag2
+            data, isCacheOnboolean, isCacheOn = readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString)
         db.close()
+        endTime = time.time()
+        execTime = endTime - startTime
         if (isCacheOnboolean):
             return render_template("cachetable.html", data=data, timetaken=str(execTime), isCacheOn=isCacheOn)
         else:

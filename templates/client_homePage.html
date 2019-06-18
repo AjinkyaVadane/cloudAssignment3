@@ -17,6 +17,7 @@
         <div style="background-color: lightgreen">
             <form action="/client_homePage" method="GET">
                 Enter Magnitude: <input type="text" name="eathquake_mag">
+                Count range to run query: <input type="text" name="count_from_user">
                   select Operator:
                   <select name = "symbol_operator">
                   <option value="<"><</option>
@@ -55,6 +56,24 @@
         </div>
 
     </p>
+
+
+
+
+        <p>
+        <div style = "background-color: cadetblue">
+            <form action="client_homePage" method="GET">
+                Cache Clear
+                  <input type="submit" name = "clear_cache" value="clear_cache">
+            </form>
+        </div>
+    </p>
+
+
+
+
+
+
 
          <p>
         <h3>mycache queryString = select * from earthquakeAssignment3</h3>
@@ -118,6 +137,7 @@
                 <form action="/client_homePage" method="GET">
                      magnitude1: <input type="text" name="mag1">
                      magnitude2: <input type="text" name="mag2">
+                    enter count to run: <input type="text" name = "count_from_user">
                     <input type="submit" name= "form_find_earthquake_in_magrange" value="Submit" />
                 </form>
     </div>

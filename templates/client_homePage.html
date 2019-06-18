@@ -27,12 +27,9 @@
                   <option value=">=">>=</option>
                   </select>
                   <input type="submit" name = "form" value="Submit">
-                  <input type="submit" name = "form_countOccurence" value="Count_occurence">
-
-
+                  <input type="submit" name = "load_db_form" value="load_db_form">
+                  <input type="submit" name = "load_cache_form" value="load_cache_form">
             </form>
-
-
         </div>
     </p>
 
@@ -51,6 +48,7 @@
                       <option value="mycache5">mycache5</option>
 
                   </select>
+                enter count to run: <input type="text" name = "count_from_user">
                   <input type="submit" name = "delete_cache" value="delete_cache">
             </form>
         </div>
@@ -79,6 +77,7 @@
         <h3>mycache queryString = select * from earthquakeAssignment3</h3>
         <div style = "background-color: cadetblue">
             <form action="client_homePage" method="GET">
+                enter count to run: <input type="text" name = "count_from_user">
              <input type="submit" name="redis_cache_load" value="redis_cache_load">
             </form>
         </div>
@@ -99,6 +98,7 @@
                     Enter the Latitude: <input type="text" name="lat">
                     Enter the Longitude: <input type="text" name="lon">
                     Enter the Radius in kms: <input type="text" name="rad">
+                    enter count to run: <input type="text" name = "count_from_user">
                     <input type="submit" name= "form_find_earthquake_in_range" value="Submit" />
                 </form>
     </div>
@@ -112,6 +112,7 @@
             <h3>Find Earthquakes only occurring in particular location</h3>
                 <form action="/client_homePage" method="GET">
                     Enter the loation: <input type="text" name="location">
+                    enter count to run: <input type="text" name = "count_from_user">
                     <input type="submit" name= "form_find_earthquake_in_location" value="Submit" />
                 </form>
     </div>
@@ -125,6 +126,7 @@
                 <form action="/client_homePage" method="GET">
                      time1: <input type="datetime-local" name="time1">
                      time2: <input type="datetime-local" name="time2">
+                    enter count to run: <input type="text" name = "count_from_user">
                     <input type="submit" name= "form_find_earthquake_in_timerange" value="Submit" />
                 </form>
     </div>

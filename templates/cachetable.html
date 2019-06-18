@@ -39,11 +39,17 @@
 
 
     <table border=1>
-
+    {% for earthq in data%}
     <tr>
-            <td>{{data}}</td>
+            {% for info in earthq%}
 
+            <td>{{info}}</td>
+            {%endfor%}
+
+    </tr>
+    {%endfor%}
 </table>
+
 
 
 

@@ -79,18 +79,14 @@ def readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString, count):
 
 
 #read from DB
-def readfromDb(cache, isCacheOnboolean, cursor, queryString, count):
-    st = time.time()
-    for i in range(count):
-        dataList = []
+def readfromDb(cursor, queryString):
         print(queryString)
         cursor.execute(queryString)
         data = cursor.fetchall()
         # print(data)
         print("Only from DB")
         isCacheOn = 'From Db Only'
-        print(time.time() - st)
-        return data, isCacheOnboolean, isCacheOn
+        return data, isCacheOn
 
 #read from cache :- Make sure that data is in cache otherwise throw error
 
@@ -137,47 +133,16 @@ def routerFunction():
 
 
     if request.args.get('form') == 'Submit' or request.args.get('load_db_form') == 'load_db_form' or request.args.get('load_cache_form') == 'load_cache_form':
-        isCacheOnboolean = False
-        isLoadFromDb = False
-        isLoadFromCache = False
-        if request.args.get('load_db_form') == 'load_db_form':
-            print('i am in isLoadFromDb')
-            isLoadFromDb = True
-        if request.args.get('load_cache_form') == 'load_cache_form':
-            isLoadFromCache = True
-        # db = sqlConnect()
-        # cursor = db.cursor()
-        mag = request.args.get('eathquake_mag')
-        oper = request.args.get('symbol_operator')
-        count = int(request.args.get('count_from_user'))
-        cache = "mycache1"+oper+mag
-        print('This is cache name for your input', cache)
-        print(oper)
-        print(mag)
-        # connect to db
+
+        depth1 = request.args.get('depth1')
+        depth2 = request.args.get('depth1')
+        longi = request.args.get('longitude')
         db = sqlConnect()
         cursor = db.cursor()
-        #For (count)
-        startTime = time.time()
-        # for i in range(count):
-        # print(i)
-        queryString = '''SELECT * FROM earthquakeAssignment3 WHERE "mag"'''+oper+mag
-        if(isLoadFromDb):
-            data, isCacheOnboolean, isCacheOn = readfromDb(cache, isCacheOnboolean, cursor, queryString, count)
-            #db function
-        elif(isLoadFromCache):
-            #readFromCache
-            data, isCacheOnboolean, isCacheOn = readFromCache(cache, isCacheOnboolean, cursor, queryString, count)
-        else:
-            data, isCacheOnboolean, isCacheOn = readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString, count)
-            #print('.......this is i............',i)
-        endTime = time.time()
-        execTime = endTime - startTime
-        db.close()
-        if (isCacheOnboolean):
-            return render_template("cachetable.html", data=json.loads(data), timetaken=str(execTime), isCacheOn=isCacheOn)
-        else:
-            return render_template("table.html", data=data, timetaken=str(execTime), isCacheOn=isCacheOn)
+        queryString = "SELECT latitude, longitude, time, depthError FROM quakequiz3updated2 WHERE depthError BETWEEN "+depth1+" AND "+depth2+" AND longitude > "+longi
+        data, isCacheOn = readfromDb (cursor, queryString)
+
+        return render_template("table.html", data=data, isCacheOn=isCacheOn)
 
     if request.args.get('redis_cache_load') == 'redis_cache_load':
         isCacheOnboolean = False

@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36aacdb8-1e74-40f6-8c5d-9763629cba7a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dbLoad.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dbLoad1.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quake6.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/cachetable.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cachetable.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/client_homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client_homePage.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Assignement3$dbLoad.coverage" NAME="dbLoad Coverage Results" MODIFIED="1560659205281" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Assignement3$dbLoad.coverage" NAME="dbLoad Coverage Results" MODIFIED="1560900396177" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Assignement3$application.coverage" NAME="application Coverage Results" MODIFIED="1560835220622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Assignement3$server.coverage" NAME="server Coverage Results" MODIFIED="1560658925146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -40,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="160" column="31" lean-forward="true" selection-start-line="160" selection-start-column="31" selection-end-line="160" selection-end-column="31" />
+            <state relative-caret-position="181">
+              <caret line="142" column="26" selection-start-line="142" selection-start-column="26" selection-end-line="142" selection-end-column="26" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -50,55 +52,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/redis/client.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="1259" column="8" selection-start-line="1259" selection-start-column="8" selection-end-line="1259" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/json/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-78">
-              <caret line="298" column="4" selection-start-line="298" selection-start-column="4" selection-end-line="298" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/all_month.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="1" column="49" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/table.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="818">
-              <caret line="70" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/cachetable.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/client_homePage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="17" column="42" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="42" />
+            <state relative-caret-position="585">
+              <caret line="34" column="34" lean-forward="true" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -107,6 +64,15 @@
                 <element signature="n#style#0;n#div#5;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/table.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="64" column="36" lean-forward="true" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -133,6 +99,7 @@
       <find>cache</find>
       <find>form</find>
       <find>readOrLoadfromCache</find>
+      <find>Submit</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -141,19 +108,19 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dbLoad.py" />
         <option value="$PROJECT_DIR$/server.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/templates/table.html" />
         <option value="$PROJECT_DIR$/templates/cachetable.html" />
+        <option value="$PROJECT_DIR$/dbLoad.py" />
         <option value="$PROJECT_DIR$/templates/client_homePage.html" />
         <option value="$PROJECT_DIR$/application.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="862" />
+    <option name="y" value="145" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -191,9 +158,12 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Study\Summer19\Cloud\Assignement3\templates" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Study\Summer19\Cloud\Assignement3" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Study\Summer19\Cloud\Assignement3" />
+      <recent name="C:\Study\Summer19\Cloud\Assignement3\templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -208,7 +178,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.application">
+  <component name="RunManager" selected="Python.dbLoad">
     <configuration name="application" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Assignement3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -277,8 +247,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.application" />
         <item itemvalue="Python.dbLoad" />
+        <item itemvalue="Python.application" />
         <item itemvalue="Python.server" />
       </list>
     </recent_temporary>
@@ -299,29 +269,29 @@
       <workItem from="1560667214706" duration="5020000" />
       <workItem from="1560712977987" duration="12686000" />
       <workItem from="1560791951090" duration="35190000" />
-      <workItem from="1560881358796" duration="13552000" />
+      <workItem from="1560881358796" duration="16905000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79386000" />
+    <option name="totallyTimeSpent" value="82739000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918434" weight="0.07462686" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918434" visible="true" weight="0.12260128" />
       <window_info id="Favorites" order="1" sideWeight="0.5008157" side_tool="true" weight="0.14552239" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.22751896" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.32719395" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32936078" />
-      <window_info anchor="bottom" id="Python Console" order="4" weight="0.66847235" />
+      <window_info anchor="bottom" id="Python Console" order="4" weight="0.276273" />
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.3261105" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.6186349" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.46045503" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -337,7 +307,7 @@
       <window_info id="Favorites" order="1" sideWeight="0.5008157" side_tool="true" weight="0.14552239" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.3033586" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.26760563" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="4" weight="0.66847235" />
@@ -414,7 +384,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dbLoad.py" />
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -433,13 +402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="124" selection-start-line="124" selection-end-line="124" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -464,20 +426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="818">
-          <caret line="70" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/cachetable.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/redis/client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -485,10 +433,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dbLoad1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbLoad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="37" column="19" lean-forward="true" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quake6.csv">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/cachetable.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="972">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="64" column="36" lean-forward="true" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/client_homePage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="17" column="42" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="42" />
+        <state relative-caret-position="585">
+          <caret line="34" column="34" lean-forward="true" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -502,8 +491,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="160" column="31" lean-forward="true" selection-start-line="160" selection-start-column="31" selection-end-line="160" selection-end-column="31" />
+        <state relative-caret-position="181">
+          <caret line="142" column="26" selection-start-line="142" selection-start-column="26" selection-end-line="142" selection-end-column="26" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>

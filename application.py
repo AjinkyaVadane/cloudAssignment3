@@ -135,7 +135,7 @@ def routerFunction():
     if request.args.get('form') == 'Submit' or request.args.get('load_db_form') == 'load_db_form' or request.args.get('load_cache_form') == 'load_cache_form':
 
         depth1 = request.args.get('depth1')
-        depth2 = request.args.get('depth1')
+        depth2 = request.args.get('depth2')
         longi = request.args.get('longitude')
         db = sqlConnect()
         cursor = db.cursor()

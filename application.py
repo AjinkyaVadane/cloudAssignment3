@@ -105,12 +105,6 @@ def routerFunction():
             return render_template("cachetable.html", data=data, timetaken=str(execTime), isCacheOn=isCacheOn)
         else:
             return render_template("table.html", data=data, timetaken=str(execTime), isCacheOn=isCacheOn)
-        print(query)
-        cursor.execute(query)
-        row = cursor.fetchall()
-        # ibm_db.bind_param(stmt, 1, name)
-        return str(row)
-        # return "Hello Ajinkya You are doing great"
 
     if request.args.get('redis_cache_load') == 'redis_cache_load':
         isCacheOnboolean = False
@@ -120,7 +114,7 @@ def routerFunction():
         # connect to db
         db = sqlConnect()
         cursor = db.cursor()
-        queryString = "select * from earthquakeAssignment3 where mag > 6"
+        queryString = "select * from earthquakeAssignment3"
         data, isCacheOnboolean, execTime, isCacheOn = readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString)
         db.close()
         if (isCacheOnboolean):

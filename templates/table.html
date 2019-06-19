@@ -38,38 +38,108 @@
 </table>
 
 
+        <table border=1>
+     <td> count : {{data}}</td>
+        </table>
 
-    <table border=1>
-    {% for r in data%}
+
+
+
+
+        <table border=1>
+    {% for earthq in data%}
     <tr>
-            <td>{{r["time"]}}</td>
-            <td>{{r["latitude"]}}</td>
-            <td>{{r["longitude"]}}</td>
-            <td>{{r["depth"]}}</td>
-            <td>{{r["mag"]}}</td>
-            <td>{{r["magType"]}}</td>
-            <td>{{r["nst"]}}</td>
-            <td>{{r["gap"]}}</td>
-            <td>{{r["dmin"]}}</td>
-            <td>{{r["rms"]}}</td>
-            <td>{{r["net"]}}</td>
-            <td>{{r["id"]}}</td>
-            <td>{{r["updated"]}}</td>
-            <td>{{r["place"]}}</td>
-            <td>{{r["type"]}}</td>
-            <td>{{r["locationSource"]}}</td>
-            <td>{{r["magSource"]}}</td>
-            <td>{{r["horizontalError"]}}</td>
-            <td>{{r["depthError"]}}</td>
-            <td>{{r["magError"]}}</td>
-            <td>{{r["magNst"]}}</td>
-            <td>{{r["status"]}}</td>
+            {% for info in earthq%}
+
+            <td>{{info}}</td>
+            {%endfor%}
+
     </tr>
     {%endfor%}
-</table>
+        </table>
+
+
+
+    <!--<table border=1>-->
+    <!--{% for r in data%}-->
+    <!--<tr>-->
+
+            <!--&lt;!&ndash;<td>{{r["latitude"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["longitude"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["time"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["depthError"]}}</td>&ndash;&gt;-->
+
+
+            <!--&lt;!&ndash;<td>{{r["time"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["latitude"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["longitude"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["depth"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["mag"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["magType"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["nst"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["gap"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["dmin"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["rms"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["net"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["id"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["updated"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["place"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["type"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["locationSource"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["magSource"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["horizontalError"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["depthError"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["magError"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["magNst"]}}</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>{{r["status"]}}</td>&ndash;&gt;-->
+    <!--</tr>-->
+    <!--{%endfor%}
+</table>-->
 
 
     </td>
+</table>
+
+<table>
+    <td>
+        <h1>1001657016</h1>
+        <h2>Vadane, Ajinkya</h2>
+
+        <table border=1>
+
+    <tr>
+            <td> randomlist1 : {{randomdepthlist1}}</td>
+
+    </tr>
+        </table>
+
+</table>
+
+<table>
+    <td>
+
+        <table border=1>
+
+    <tr>
+            <td> randomlist2 : {{randomdepthlist2}}</td>
+
+    </tr>
+        </table>
+
+</table>
+
+
+<table>
+    <td>
+
+        <table border=1>
+
+    <tr>
+            <td> timetaken : {{timetaken1}}</td>
+
+    </tr>
+        </table>
+
 </table>
 
 

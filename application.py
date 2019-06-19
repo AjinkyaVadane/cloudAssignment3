@@ -7,6 +7,7 @@ import os
 from datetime import datetime
 import json
 from datetime import timedelta
+import random
 
 
 #port = int(os.getenv("VCAP_APP_PORT"))
@@ -38,60 +39,57 @@ def sqlConnect():
 
 
 #function to check in cache
-def readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString, count):
-    st = time.time()
-    for i in range(count):
-        if r.get(cache) == None:
-            dataList=[]
-            #startTime = time.time()
-            print(queryString)
-            cursor.execute(queryString)
-            data = cursor.fetchall()
-            print(data)
-            for row in data:
-                dataList.append([x for x in row])
-                print('.........',dataList)
-            #endTime = time.time()
-            #execTime = endTime - startTime
-            #data_string = data
-            #r.rpush(cache, data)
-            #r.set(cache, str(data_string))  # redis requires data to be in Convert to a byte, string or number first.
-            r.set(cache, json.dumps(dataList))
-            #finalList = data
-            print("No Cache")
-            #print("No cache Time : ", execTime)
-            isCacheOn = 'No cache'
-
-        else:
-            #startTime = time.time()
-            #data = json.loads(r.get(cache))
-            data = r.get(cache)
-            print(data)
-            #endTime = time.time()
-            #execTime = endTime - startTime
-            #print("Cache Time is", execTime)
-            print("Cache")
-            #print("Cache Time is", execTime)
-            isCacheOn = 'In cache'
-            isCacheOnboolean = True
-        print(time.time() - st)
-    return data, isCacheOnboolean, isCacheOn
-
-
-#read from DB
-def readfromDb(cursor, queryString):
+def readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString):
+    if r.get(cache) == None:
+        dataList=[]
+        #startTime = time.time()
         print(queryString)
         cursor.execute(queryString)
         data = cursor.fetchall()
         print(data)
-        print("Only from DB")
-        isCacheOn = 'From Db Only'
-        return data, isCacheOn
+        for row in data:
+            dataList.append([x for x in row])
+            print('.........',dataList)
+        #endTime = time.time()
+        #execTime = endTime - startTime
+        #data_string = data
+        #r.rpush(cache, data)
+        #r.set(cache, str(data_string))  # redis requires data to be in Convert to a byte, string or number first.
+        r.set(cache, json.dumps(dataList))
+        #finalList = data
+        print("No Cache")
+        #print("No cache Time : ", execTime)
+        isCacheOn = 'No cache'
+
+    else:
+        #startTime = time.time()
+        #data = json.loads(r.get(cache))
+        data = r.get(cache)
+        print(data)
+        #endTime = time.time()
+        #execTime = endTime - startTime
+        #print("Cache Time is", execTime)
+        print("Cache")
+        #print("Cache Time is", execTime)
+        isCacheOn = 'In cache'
+        isCacheOnboolean = True
+    return data, isCacheOnboolean, isCacheOn
+
+
+#read from DB
+def readfromDb(cache, isCacheOnboolean, cursor, queryString):
+    dataList = []
+    print(queryString)
+    cursor.execute(queryString)
+    data = cursor.fetchall()
+    # print(data)
+    print("Only from DB")
+    isCacheOn = 'From Db Only'
+    return data, isCacheOnboolean, isCacheOn
 
 #read from cache :- Make sure that data is in cache otherwise throw error
 
-def readFromCache(cache, isCacheOnboolean, cursor, queryString, count):
-    st = time.time()
+def readFromCache(cache, isCacheOnboolean, cursor, queryString):
     if r.get(cache) == None:
         isCacheOn = 'key is not in cache'
         data = []
@@ -101,13 +99,7 @@ def readFromCache(cache, isCacheOnboolean, cursor, queryString, count):
         print("Cache")
         isCacheOn = 'In cache'
         isCacheOnboolean = True
-    print(time.time()-st)
     return data, isCacheOnboolean, isCacheOn
-
-
-
-
-
 
 
 #delete Cache
@@ -133,38 +125,70 @@ def routerFunction():
 
 
     if request.args.get('form') == 'Submit' or request.args.get('load_db_form') == 'load_db_form' or request.args.get('load_cache_form') == 'load_cache_form':
+        isCacheOnboolean = False
+        isLoadFromDb = False
+        isLoadFromCache = False
+        if request.args.get('load_db_form') == 'load_db_form':
+            print('i am in isLoadFromDb')
+            isLoadFromDb = True
+        if request.args.get('load_cache_form') == 'load_cache_form':
+            isLoadFromCache = True
+        # db = sqlConnect()
+        # cursor = db.cursor()
+        # mag = request.args.get('eathquake_mag')
+        # oper = request.args.get('symbol_operator')
+        # count = int(request.args.get('count_from_user'))
+        # cache = "mycache1"+oper+mag
 
-        depth1 = request.args.get('depth1')
-        depth2 = request.args.get('depth2')
-        count =  int(request.args.get('count'))
-        # random_depth1 = random.randint(depth1,depth2)
-        # random_depth2 = random.randint(depth1,depth2)
-        #longi = request.args.get('longitude')
+        depth1 = float(request.args.get('depth1'))
+        depth2 = float(request.args.get('depth2'))
+        count = int(request.args.get('count_from_user'))
+        cache = "mycache1"
+        #randomdepth1 = random.uniform(depth1,depth2)
+        #randomdepth2 = random.uniform(depth1, depth2)
+
+        print('This is cache name for your input', cache)
+        time_list =[]
+        randomdepth_list1 = []
+        randomdepth_list2 = []
+        count_list = []
+        # connect to db
         db = sqlConnect()
         cursor = db.cursor()
-        dict = {}
-        customList= []
-        timeList= []
+        #For (count)
+        startTimecumulative = time.time()
         for i in range(count):
-            # random_depth1 = random.randint(depth1, depth2)
-            # random_depth2 = random.randint(depth1, depth2)
             startTime = time.time()
-            #queryString = "Select TOP 2, depthError FROM quakequiz3updated2 ORDER BY depthError BETWEEN "+ depth1 +" AND "+ depth2 "
-            queryString = "SELECT TOP 2 depthError  FROM quakequiz3updated2 ORDER BY NEWID()"
-            data, isCacheOn = readfromDb(cursor, queryString)
-            # for d in data:
-            #     if(d in dict.keys()):
-            #         dict[d] += 1
-            #     else:
-            #         dict[d] = 1
-            #     print(dict)
-            endtime = time.time()
-            execTime = endtime - startTime
-            timeList.append(execTime)
-        return render_template("cachetable.html", data=data, timetaken=timeList, isCacheOn=isCacheOn)
-
-
-        #return render_template("table.html", data=data, isCacheOn=isCacheOn)
+            randomdepth1 = str(random.uniform(depth1, depth2))
+            randomdepth2 = str(random.uniform(depth1, depth2))
+            randomdepth_list1.append(randomdepth1)
+            randomdepth_list2.append(randomdepth2)
+            print(i)
+            queryString = "SELECT COUNT(*) FROM quakequiz3updated2 WHERE  depthError >="+randomdepth1+ " AND depthError <="+randomdepth2
+            if(isLoadFromDb):
+                    data, isCacheOnboolean, isCacheOn = readfromDb(cache, isCacheOnboolean, cursor, queryString)
+                #db function
+            elif(isLoadFromCache):
+                #readFromCache
+                data, isCacheOnboolean, isCacheOn = readFromCache(cache, isCacheOnboolean, cursor, queryString)
+            else:
+                data, isCacheOnboolean, isCacheOn = readOrLoadfromCache(cache, isCacheOnboolean, cursor, queryString)
+                #print('.......this is i............',i)
+            endTime = time.time()
+            execTime = endTime - startTime
+            time_list.append(execTime)
+            print('data..........',data)
+            count_list.append(data)
+        endTimecumulative = time.time()
+        execTimecumulative = endTimecumulative - startTimecumulative
+        db.close()
+        if (isCacheOnboolean):
+            return render_template("table.html", data=count_list, timetaken=str(execTimecumulative),
+                                   isCacheOn=isCacheOn, randomdepthlist1=randomdepth_list1,
+                                   randomdepthlist2=randomdepth_list2, timetaken1=time_list)
+            # return render_template("cachetable.html", data=json.loads(count_list), timetaken=str(execTime), isCacheOn=isCacheOn, randomdepthlist1 = randomdepth_list1, randomdepthlist2 = randomdepth_list2, timetaken1 = time_list)
+        else:
+            return render_template("table.html", data=count_list, timetaken=str(execTimecumulative), isCacheOn=isCacheOn, randomdepthlist1 = randomdepth_list1, randomdepthlist2 = randomdepth_list2, timetaken1 = time_list)
 
     if request.args.get('redis_cache_load') == 'redis_cache_load':
         isCacheOnboolean = False

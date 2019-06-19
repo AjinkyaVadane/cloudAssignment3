@@ -83,7 +83,7 @@ def readfromDb(cursor, queryString):
         print(queryString)
         cursor.execute(queryString)
         data = cursor.fetchall()
-        # print(data)
+        print(data)
         print("Only from DB")
         isCacheOn = 'From Db Only'
         return data, isCacheOn
@@ -136,13 +136,35 @@ def routerFunction():
 
         depth1 = request.args.get('depth1')
         depth2 = request.args.get('depth2')
-        longi = request.args.get('longitude')
+        count =  int(request.args.get('count'))
+        # random_depth1 = random.randint(depth1,depth2)
+        # random_depth2 = random.randint(depth1,depth2)
+        #longi = request.args.get('longitude')
         db = sqlConnect()
         cursor = db.cursor()
-        queryString = "SELECT latitude, longitude, time, depthError FROM quakequiz3updated2 WHERE depthError BETWEEN "+depth1+" AND "+depth2+" AND longitude > "+longi
-        data, isCacheOn = readfromDb (cursor, queryString)
+        dict = {}
+        customList= []
+        timeList= []
+        for i in range(count):
+            # random_depth1 = random.randint(depth1, depth2)
+            # random_depth2 = random.randint(depth1, depth2)
+            startTime = time.time()
+            #queryString = "Select TOP 2, depthError FROM quakequiz3updated2 ORDER BY depthError BETWEEN "+ depth1 +" AND "+ depth2 "
+            queryString = "SELECT TOP 2 depthError  FROM quakequiz3updated2 ORDER BY NEWID()"
+            data, isCacheOn = readfromDb(cursor, queryString)
+            # for d in data:
+            #     if(d in dict.keys()):
+            #         dict[d] += 1
+            #     else:
+            #         dict[d] = 1
+            #     print(dict)
+            endtime = time.time()
+            execTime = endtime - startTime
+            timeList.append(execTime)
+        return render_template("cachetable.html", data=data, timetaken=timeList, isCacheOn=isCacheOn)
 
-        return render_template("table.html", data=data, isCacheOn=isCacheOn)
+
+        #return render_template("table.html", data=data, isCacheOn=isCacheOn)
 
     if request.args.get('redis_cache_load') == 'redis_cache_load':
         isCacheOnboolean = False

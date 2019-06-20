@@ -342,6 +342,7 @@ def routerFunction():
         db.close()
         #return "Hello"
         return render_template('assignment4.html', tableDatal=lstDictionaryDataDisplay)
+        #return render_template('barchartforloop.html', result=json.dumps(lstDictionaryDataDisplay))
 
     if request.args.get('Assignment_4') == "Assignment_4_bar":
         mag = request.args.get('mag')
@@ -410,16 +411,27 @@ def routerFunction():
         return  render_template('piechartdepth.html', result = result)
 
 
-    # if request.args.get('Assignment_4') == "Asssignment_4_bar_graph":
-    #     mag1  = request.args.get('mag1')
-    #     mag2 = request.args.get('mag2')
-    #     for i in range(mag1, mag2, 1)
-    #             queryString = '''SELECT count(*) AS counts, mag FROM earthquakeAssignment3 WHERE "mag" BETWEEN ''' + str(i) + ''' and ''' + str(i+1)
-    #             db = sqlConnect()
-    #             cursor = db.cursor()
-    #             cursor.execute(queryString)
-    #             result = cursor.fetchall()
-    #             final_result.append(result)
+    if request.args.get('Assignment_4') == "Asssignment_4_bar_graph-1":
+        queryString = "select t.range as magnitudes, count(*) as occurences from ( select case when mag >= 0 and mag < 1 then 0 when mag >= 1 and mag < 2 then 1 when mag >= 2 and mag < 3 then 2 when mag >= 3 and mag < 4 then 3 when mag >= 4 and mag < 5 then 4 when mag >= 5 and mag < 6 then 5 when mag >= 6 and mag < 7 then 6 when mag >= 7 and mag < 8 then 7 when mag >= 8 and mag < 9 then 8 when mag >= 9 and mag < 10 then 9 else -1 end as range from quakequiz3updated2) t group by t.range order by magnitudes;"
+        db = sqlConnect()
+        cursor = db.cursor()
+        cursor.execute(queryString)
+        result = cursor.fetchall()
+        print('..........',result)
+        db.close()
+        return render_template('barchart.html', result = result)
+
+    if request.args.get('Assignment_4') == "Asssignment_4_pie_graph-1":
+        queryString = "select t.range as magnitudes, count(*) as occurences from ( select case when mag >= 0 and mag < 1 then 0 when mag >= 1 and mag < 2 then 1 when mag >= 2 and mag < 3 then 2 when mag >= 3 and mag < 4 then 3 when mag >= 4 and mag < 5 then 4 when mag >= 5 and mag < 6 then 5 when mag >= 6 and mag < 7 then 6 when mag >= 7 and mag < 8 then 7 when mag >= 8 and mag < 9 then 8 when mag >= 9 and mag < 10 then 9 else -1 end as range from quakequiz3updated2) t group by t.range order by magnitudes;"
+        db = sqlConnect()
+        cursor = db.cursor()
+        cursor.execute(queryString)
+        result = cursor.fetchall()
+        print('..........',result)
+        db.close()
+        return render_template('piechart.html', result = result)
+
+
 
 
 

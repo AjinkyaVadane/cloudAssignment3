@@ -1,157 +1,211 @@
 <html>
-    <head>
-        <title>
-            Query the Earthquake Data
-        </title>
-    </head>
-    <body>
-        <h1>
-            Ajinkya Vadane
-        </h1>
-		<h1>
-			1001657016
-		</h1>
-        <!-- Checking connnection -->
-    <p>
-        <h3>cache = "mycache1" queryString = "select latitude, longitude, mag, magType from quake where mag >" + magnitudeVal</h3>
-        <div style="background-color: lightgreen">
-            <form action="/client_homePage" method="GET">
-                enter deptherror1 : <input type="text" name="depth1">
-                enter deptherror2 : <input type="text" name="depth2">
-                <!--enter longitude : <input type="text" name="longitude">-->
-                enter count : <input type="text" name="count_from_user">
+<head>
+    <title>
+        Query the Earthquake Data
+    </title>
+</head>
+<body>
+<h1>
+    Ajinkya Vadane
+</h1>
+<h1>
+    1001657016
+</h1>
+<!-- Checking connnection -->
+<p>
+<h3>cache = "mycache1" queryString = "select latitude, longitude, mag, magType from quake where mag >" + magnitudeVal</h3>
+<div style="background-color: lightgreen">
+    <form action="/client_homePage" method="GET">
+        enter deptherror1 : <input type="text" name="depth1">
+        enter deptherror2 : <input type="text" name="depth2">
+        <!--enter longitude : <input type="text" name="longitude">-->
+        enter count : <input type="text" name="count_from_user">
 
 
 
 
-                <!--Enter Magnitude: <input type="text" name="eathquake_mag">-->
-                <!--Count range to run query: <input type="text" name="count_from_user">-->
-                  <!--select Operator:-->
-                  <!--<select name = "symbol_operator">-->
-                  <!--<option value="<"><</option>-->
-                  <!--<option value=">">></option>-->
-                  <!--<option value="=">=</option>-->
-                  <!--<option value="<="><=</option>-->
-                  <!--<option value=">=">>=</option>-->
-                  <!--</select>-->
-                  <input type="submit" name = "form" value="Submit">
-                  <input type="submit" name = "load_db_form" value="load_db_form">
-                  <input type="submit" name = "load_cache_form" value="load_cache_form">
-            </form>
-        </div>
-    </p>
+        <!--Enter Magnitude: <input type="text" name="eathquake_mag">-->
+        <!--Count range to run query: <input type="text" name="count_from_user">-->
+        <!--select Operator:-->
+        <!--<select name = "symbol_operator">-->
+        <!--<option value="<"><</option>-->
+        <!--<option value=">">></option>-->
+        <!--<option value="=">=</option>-->
+        <!--<option value="<="><=</option>-->
+        <!--<option value=">=">>=</option>-->
+        <!--</select>-->
+        <input type="submit" name = "form" value="Submit">
+        <input type="submit" name = "load_db_form" value="load_db_form">
+        <input type="submit" name = "load_cache_form" value="load_cache_form">
+    </form>
+</div>
+</p>
 
 
-        <!-- Adding data to redis cache -->
-    <p>
-        <div style = "background-color: cadetblue">
-            <form action="client_homePage" method="GET">
-                select cache name to delete:
-                  <select name = "symbol_operator">
-                  <option value="mycache">mycache</option>
-                      <option value="mycache1">mycache1</option>
-                      <option value="mycache2">mycache2</option>
-                      <option value="mycache3">mycache3</option>
-                      <option value="mycache4">mycache4</option>
-                      <option value="mycache5">mycache5</option>
+<!-- Adding data to redis cache -->
+<p>
+<div style = "background-color: cadetblue">
+    <form action="client_homePage" method="GET">
+        select cache name to delete:
+        <select name = "symbol_operator">
+            <option value="mycache">mycache</option>
+            <option value="mycache1">mycache1</option>
+            <option value="mycache2">mycache2</option>
+            <option value="mycache3">mycache3</option>
+            <option value="mycache4">mycache4</option>
+            <option value="mycache5">mycache5</option>
 
-                  </select>
-                enter count to run: <input type="text" name = "count_from_user">
-                  <input type="submit" name = "delete_cache" value="delete_cache">
-            </form>
-        </div>
+        </select>
+        enter count to run: <input type="text" name = "count_from_user">
+        <input type="submit" name = "delete_cache" value="delete_cache">
+    </form>
+</div>
 
-    </p>
-
-
-
-
-        <p>
-        <div style = "background-color: cadetblue">
-            <form action="client_homePage" method="GET">
-                Cache Clear
-                  <input type="submit" name = "clear_cache" value="clear_cache">
-            </form>
-        </div>
-    </p>
+</p>
 
 
 
 
-
-
-
-         <p>
-        <h3>mycache queryString = select * from earthquakeAssignment3</h3>
-        <div style = "background-color: cadetblue">
-            <form action="client_homePage" method="GET">
-                enter count to run: <input type="text" name = "count_from_user">
-             <input type="submit" name="redis_cache_load" value="redis_cache_load">
-            </form>
-        </div>
-
-    </p>
+<p>
+<div style = "background-color: cadetblue">
+    <form action="client_homePage" method="GET">
+        Cache Clear
+        <input type="submit" name = "clear_cache" value="clear_cache">
+    </form>
+</div>
+</p>
 
 
 
 
 
-        <!--Find Earthquakes in a certain radius and magnitude greater -->
 
-    <p>
-    <div style="background-color: lightgreen">
-            <h3>mycache2  query = SELECT id, latitude, longitude, depth, mag, magType</h3>
-            <h3>Find Earthquakes in a certain radius and magnitude greater</h3>
-                <form action="/client_homePage" method="GET">
-                    Enter the Latitude: <input type="text" name="lat">
-                    Enter the Longitude: <input type="text" name="lon">
-                    Enter the Radius in kms: <input type="text" name="rad">
-                    enter count to run: <input type="text" name = "count_from_user">
-                    <input type="submit" name= "form_find_earthquake_in_range" value="Submit" />
-                </form>
-    </div>
-    </p>
+
+<p>
+<h3>mycache queryString = select * from earthquakeAssignment3</h3>
+<div style = "background-color: cadetblue">
+    <form action="client_homePage" method="GET">
+        enter count to run: <input type="text" name = "count_from_user">
+        <input type="submit" name="redis_cache_load" value="redis_cache_load">
+    </form>
+</div>
+
+</p>
 
 
 
-    <p>
-    <div style="background-color: lightgreen">
-            <h3>mycache3 </h3>
-            <h3>Find Earthquakes only occurring in particular location</h3>
-                <form action="/client_homePage" method="GET">
-                    Enter the loation: <input type="text" name="location">
-                    enter count to run: <input type="text" name = "count_from_user">
-                    <input type="submit" name= "form_find_earthquake_in_location" value="Submit" />
-                </form>
-    </div>
-    </p>
 
 
-    <p>
-    <div style="background-color: lightgreen">
-            <h3>mycache4 </h3>
-            <h3>Find Earthquakes only occurring in within particular time range</h3>
-                <form action="/client_homePage" method="GET">
-                     time1: <input type="datetime-local" name="time1">
-                     time2: <input type="datetime-local" name="time2">
-                    enter count to run: <input type="text" name = "count_from_user">
-                    <input type="submit" name= "form_find_earthquake_in_timerange" value="Submit" />
-                </form>
-    </div>
-    </p>
+<!--Find Earthquakes in a certain radius and magnitude greater -->
 
-    <p>
-    <div style="background-color: lightgreen">
-            <h3>mycache5 </h3>
-            <h3>Find Earthquakes only occurring in within particular magnitude range</h3>
-                <form action="/client_homePage" method="GET">
-                     magnitude1: <input type="text" name="mag1">
-                     magnitude2: <input type="text" name="mag2">
-                    enter count to run: <input type="text" name = "count_from_user">
-                    <input type="submit" name= "form_find_earthquake_in_magrange" value="Submit" />
-                </form>
-    </div>
-    </p>
+<p>
+<div style="background-color: lightgreen">
+    <h3>mycache2  query = SELECT id, latitude, longitude, depth, mag, magType</h3>
+    <h3>Find Earthquakes in a certain radius and magnitude greater</h3>
+    <form action="/client_homePage" method="GET">
+        Enter the Latitude: <input type="text" name="lat">
+        Enter the Longitude: <input type="text" name="lon">
+        Enter the Radius in kms: <input type="text" name="rad">
+        enter count to run: <input type="text" name = "count_from_user">
+        <input type="submit" name= "form_find_earthquake_in_range" value="Submit" />
+    </form>
+</div>
+</p>
 
-    </body>
+
+
+<p>
+<div style="background-color: lightgreen">
+    <h3>mycache3 </h3>
+    <h3>Find Earthquakes only occurring in particular location</h3>
+    <form action="/client_homePage" method="GET">
+        Enter the loation: <input type="text" name="location">
+        enter count to run: <input type="text" name = "count_from_user">
+        <input type="submit" name= "form_find_earthquake_in_location" value="Submit" />
+    </form>
+</div>
+</p>
+
+
+<p>
+<div style="background-color: lightgreen">
+    <h3>mycache4 </h3>
+    <h3>Find Earthquakes only occurring in within particular time range</h3>
+    <form action="/client_homePage" method="GET">
+        time1: <input type="datetime-local" name="time1">
+        time2: <input type="datetime-local" name="time2">
+        enter count to run: <input type="text" name = "count_from_user">
+        <input type="submit" name= "form_find_earthquake_in_timerange" value="Submit" />
+    </form>
+</div>
+</p>
+
+<p>
+<div style="background-color: lightgreen">
+    <h3>mycache5 </h3>
+    <h3>Find Earthquakes only occurring in within particular magnitude range</h3>
+    <form action="/client_homePage" method="GET">
+        magnitude1: <input type="text" name="mag1">
+        magnitude2: <input type="text" name="mag2">
+        enter count to run: <input type="text" name = "count_from_user">
+        <input type="submit" name= "form_find_earthquake_in_magrange" value="Submit" />
+    </form>
+</div>
+</p>
+
+
+
+<!--Assignment4 -->
+
+<p>
+<div style="background-color: coral">
+    <form action="/client_homePage" method="GET">
+        <!--enter deptherror1 : <input type="text" name="depth1">-->
+        <!--enter deptherror2 : <input type="text" name="depth2">-->
+        enter magnitude : <input type="number" name="mag", value="1">
+        enter count : <input type="number" name="count_from_user", value="100">
+        <input type="submit" name = "Assignment_4" value="Assignment_4">
+    </form>
+
+</div>
+</p>
+
+
+<p>
+<div style="background-color: coral">
+    <form action="/client_homePage" method="GET">
+
+        <input type="submit" name = "Assignment_4" value="Assignment_4_bar">
+    </form>
+
+</div>
+</p>
+
+
+<p>
+<div style="background-color: coral">
+    <form action="/client_homePage" method="GET">
+
+
+        <input type="submit" name = "Assignment_4" value="Assignment_4_pie">
+    </form>
+
+</div>
+</p>
+
+<p>
+<div style="background-color: coral">
+    <form action="/client_homePage" method="GET">
+         enter depth1 : <input type="text" name="depth1">
+        enter depth2 : <input type="text" name="depth2">
+        enter count : <input type="text" name="count">
+
+        <input type="submit" name = "Assignment_4" value="Assignment_4_pie_depth">
+    </form>
+
+</div>
+</p>
+
+
+</body>
 </html>

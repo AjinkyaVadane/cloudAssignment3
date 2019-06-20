@@ -11,7 +11,7 @@ import random
 
 
 #port = int(os.getenv("VCAP_APP_PORT"))
-#port = int(os.getenv('PORT', 5000))
+port = int(os.getenv('PORT', 5000))
 
 # redis connection code
 r = redis.StrictRedis(host='redisCacheAssignemnt3.redis.cache.windows.net',
@@ -24,8 +24,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
+    # a = [{'a':'abc'}, {'b':'pqr'}, {'c':'xyz'}]
+    a = [{"a":'abc'}, {"b":'pqr'}, {"c":'xyz'}]
+    #return render_template('test.html', data=json.dumps(a))
     return render_template('client_homePage.html')
-
 # method to connect to Db
 def sqlConnect():
     server = 'mysqlserver09.database.windows.net,1433'
@@ -166,8 +168,8 @@ def routerFunction():
             print(i)
             queryString = "SELECT COUNT(*) FROM quakequiz3updated2 WHERE  depthError >="+randomdepth1+ " AND depthError <="+randomdepth2
             if(isLoadFromDb):
-                    data, isCacheOnboolean, isCacheOn = readfromDb(cache, isCacheOnboolean, cursor, queryString)
-                #db function
+                data, isCacheOnboolean, isCacheOn = readfromDb(cache, isCacheOnboolean, cursor, queryString)
+            #db function
             elif(isLoadFromCache):
                 #readFromCache
                 data, isCacheOnboolean, isCacheOn = readFromCache(cache, isCacheOnboolean, cursor, queryString)
@@ -309,3 +311,122 @@ def routerFunction():
             return render_template("cachetable.html", data=data, timetaken=str(execTime), isCacheOn=isCacheOn)
         else:
             return render_template("table.html", data=data, timetaken=str(execTime), isCacheOn=isCacheOn)
+#Assignment 4
+
+    if request.args.get('Assignment_4') == "Assignment_4":
+        #depth1 = float(request.args.get('depth1'))
+        #depth2 = float(request.args.get('depth2'))
+        mag = int(request.args.get('mag'))
+        count = int(request.args.get('count_from_user'))
+        lstDictionaryDataDisplay = []
+        magStart = 0
+        magEnd = magStart+mag
+        while magEnd<=count:
+            startTime = time.time()
+            # randomdepth1 = str(random.uniform(depth1, depth2))
+            # randomdepth2 = str(random.uniform(depth1, depth2))
+            queryString = "SELECT COUNT(*) AS counts FROM quakequiz3updated2 WHERE mag BETWEEN " + str(magStart) + " AND " + str(magEnd)
+            #queryString = "SELECT  COUNT(*) AS counts FROM quakequiz3updated2 WHERE  depthError >=" + randomdepth1 + " AND depthError <=" + randomdepth2
+            db = sqlConnect()
+            cursor = db.cursor()
+            cursor.execute(queryString)
+            quakeCount = cursor.fetchone()
+            print('.........', quakeCount)
+            #print('.............',depthCount)
+            print(str(mag))
+            #lstDictionaryDataDisplay.append({"depthError": depthCount[0]})
+            lstDictionaryDataDisplay.append({"# People": quakeCount[0], "Age Range": str(magStart) + " to " + str(magEnd)})
+            print(lstDictionaryDataDisplay)
+            magStart = magEnd
+            magEnd = magEnd + mag
+        db.close()
+        #return "Hello"
+        return render_template('assignment4.html', tableDatal=lstDictionaryDataDisplay)
+
+    if request.args.get('Assignment_4') == "Assignment_4_bar":
+        mag = request.args.get('mag')
+        lstDictionaryDataDisplay = []
+
+        # randomdepth1 = str(random.uniform(depth1, depth2))
+        # randomdepth2 = str(random.uniform(depth1, depth2))
+        queryString = "SELECT COUNT(*) AS counts, mag  FROM quakequiz3updated2 GROUP BY mag"
+        #queryString = "SELECT  COUNT(*) AS counts FROM quakequiz3updated2 WHERE  depthError >=" + randomdepth1 + " AND depthError <=" + randomdepth2
+        db = sqlConnect()
+        cursor = db.cursor()
+        cursor.execute(queryString)
+        quakeCount = cursor.fetchall()
+        print('.......',quakeCount)
+        #print('.........', quakeCount)
+        #print('.............',depthCount)
+        #print(str(mag))
+        #lstDictionaryDataDisplay.append({"depthError": depthCount[0]})
+        #lstDictionaryDataDisplay.append({"# People": quakeCount[0], "Age Range": str(magStart) + " to " + str(magEnd)})
+        #print(lstDictionaryDataDisplay)
+        db.close()
+        return render_template('barchart.html', result=quakeCount)
+
+
+    if request.args.get('Assignment_4') == "Assignment_4_pie":
+        mag = request.args.get('mag')
+        lstDictionaryDataDisplay = []
+
+        # randomdepth1 = str(random.uniform(depth1, depth2))
+        # randomdepth2 = str(random.uniform(depth1, depth2))
+        queryString = "SELECT COUNT(*) AS counts, mag FROM quakequiz3updated2 GROUP BY mag"
+        #queryString = "SELECT  COUNT(*) AS counts FROM quakequiz3updated2 WHERE  depthError >=" + randomdepth1 + " AND depthError <=" + randomdepth2
+        db = sqlConnect()
+        cursor = db.cursor()
+        cursor.execute(queryString)
+        quakeCount = cursor.fetchall()
+        print('.......', quakeCount)
+        #print('.........', quakeCount)
+        #print('.............',depthCount)
+        #print(str(mag))
+        #lstDictionaryDataDisplay.append({"depthError": depthCount[0]})
+        #lstDictionaryDataDisplay.append({"# People": quakeCount[0], "Age Range": str(magStart) + " to " + str(magEnd)})
+        #print(lstDictionaryDataDisplay)
+        db.close()
+        return render_template('piechart.html', result=quakeCount)
+
+
+    if request.args.get('Assignment_4') == "Assignment_4_pie_depth":
+        depth1 = float(request.args.get('depth1'))
+        depth2 = float(request.args.get('depth2'))
+        count = int(request.args.get('count'))
+
+        final_result = []
+        for i in range(count):
+            randomdepth1 = str(random.uniform(depth1, depth2))
+            randomdepth2 = str(random.uniform(depth1, depth2))
+            queryString = "SELECT"+randomdepth1+"-"+randomdepth2+" COUNT(*) AS counts  FROM quakequiz3updated2 WHERE depth BETWEEN "+randomdepth1 +" AND "+randomdepth2
+            db = sqlConnect()
+            cursor = db.cursor()
+            cursor.execute(queryString)
+            result = cursor.fetchall()
+            final_result.append(result)
+        print('.......', final_result)
+        result = final_result
+        db.close()
+        return  render_template('piechartdepth.html', result = result)
+
+
+    if request.args.get('Assignment_4') == "Asssignment_4_bar_graph":
+        mag1  = request.args.get('mag1')
+        mag2 = request.args.get('mag2')
+        for i in range(mag1, mag2, 1)
+                queryString = '''SELECT count(*) AS counts, mag FROM earthquakeAssignment3 WHERE "mag" BETWEEN ''' + str(i) + ''' and ''' + str(i+1)
+                db = sqlConnect()
+                cursor = db.cursor()
+                cursor.execute(queryString)
+                result = cursor.fetchall()
+                final_result.append(result)
+
+
+
+
+
+
+
+
+
+

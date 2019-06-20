@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Assignment5</title>
+</head>
+<body>
+    <div style="float: left">
+        <h1 style="color: green">I survived</h1><h2>Jinesh Modi 2464</h2>
+        <img src="/static/Minnow.jpg" width="600px">
+        <form action="quake">
+    {#        Start Dat: <input type="date" name="startDate">#}
+            Age interval: <input type="number" name="days" width="60">
+            <input type="submit" value="Analysis">
+        </form>
+        <form action="/searchdistancerange" method="get" style="padding-bottom: 5px;">
+            Search by longitude & latitude: <br>
+            Latitude range: <input type="number" name="latitudeStart" width="60"> - <input type="number" name="latitudeEnd" width="60">
+            Longitude range: <input type="number" name="longitudeStart" width="60"> - <input type="number" name="longitudeEnd" width="60">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    {% if tableData %}
+        <div style="margin: 5px; float: left" id="chart"></div>
+        <div style="margin: 5px; width: 50%" id="pie"></div>
+{#        <div style="margin: 5px;" id="table">#}
+{#            <table border="3">#}
+{#                <tr>#}
+{#                    <td># Quakes</td>#}
+{#                    <td>Magnitude Range</td>#}
+{#                </tr>#}
+{#                {% for data in tableData %}#}
+{#                    <tr>#}
+{#                        <td>{{ data["# People"] }}</td>#}
+{#                        <td>{{ data["Age Range"] }}</td>#}
+{#                    </tr>#}
+{#                {% endfor %}#}
+{#            </table>#}
+{#        </div>#}
+        <script type="text/javascript">
+            var data = {{ fareCount | tojson | safe }}
+            {#var data = {{ fareCount | tojson | safe }}#}
+            var svg = dimple.newSvg("#chart", 700, 400);
+            var chart = new dimple.chart(svg, data);
+            chart.addMeasureAxis("x", "Passenger Count");
+            chart.addCategoryAxis("y", "Fare");
+            s = chart.addSeries("Fare", dimple.plot.bar);
+            {#s.afterDraw = function(shape, data){#}
+            {#    svg.append("text").text(d3.format("%"))#}
+
+
+
+            {#chart.width = "50%";#}
+            {#chart.height = "50%";#}
+            chart.draw();
+            {#s.shapes.on("mouseover", function (d) {#}
+            {#    popup = svg.append("g");#}
+            {#    popup.append('text').text(d3.format("%")(500));#}
+            {#{)#}
+
+            var data = {{ tableData | tojson | safe }}
+            var svg2 = dimple.newSvg("#pie", "100%", 400);
+            var myChart = new dimple.chart(svg2, data);
+
+            myChart.setBounds(10, 10, 660, 360)
+            myChart.addMeasureAxis("p", "# People");
+            myChart.addSeries("Age Range", dimple.plot.pie);
+            myChart.addLegend(550, 20, 90, 300, "left");
+            myChart.draw();
+        </script>
+    {% endif %}
+</body>
+</html>

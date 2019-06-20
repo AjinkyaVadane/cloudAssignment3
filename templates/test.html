@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <title>Title</title>
+</head>
+<body>
+<div id="myDiv"><!-- Plotly chart will be drawn inside this DIV --></div>
+
+<script type="text/javascript">
+        var json = '{{ tableData|tojson| safe }}';
+        console.log('1',typeof  json);
+        console.log('3',json)
+         var inJson = JSON.parse(json);
+        listKey = []
+        listValue = []
+        // var inJson = JSON.parse(json, (key, value) => {
+        //             console.log(key);
+        //             listKey.push(key)
+        //             listValue.push(value)
+        //             console.log(value)
+        //         });
+        for (x in inJson){
+            console.log('x:',x);
+            console.log('json:x',inJson[x])
+        }
+
+        console.log('2',inJson);
+        console.log("key",listKey);
+        console.log("value",listValue);
+
+    // var ajink = '{{tableData}}'
+
+
+    //var ajparse = JSON.parse(ajink);
+    // console.log(ajparse)
+    // console.log({{info}});
+    // console.log(info);
+    var data = [{
+        y: listKey,
+        x: listValue,
+        type: 'bar'
+    }];
+
+        console.log("jsakdjaskdjasknd",data)
+
+    Plotly.newPlot('myDiv', data, {}, {showSendToCloud:true});
+</script>
+
+
+</body>
+</html>

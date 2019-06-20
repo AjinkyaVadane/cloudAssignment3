@@ -410,16 +410,16 @@ def routerFunction():
         return  render_template('piechartdepth.html', result = result)
 
 
-    if request.args.get('Assignment_4') == "Asssignment_4_bar_graph":
-        mag1  = request.args.get('mag1')
-        mag2 = request.args.get('mag2')
-        for i in range(mag1, mag2, 1)
-                queryString = '''SELECT count(*) AS counts, mag FROM earthquakeAssignment3 WHERE "mag" BETWEEN ''' + str(i) + ''' and ''' + str(i+1)
-                db = sqlConnect()
-                cursor = db.cursor()
-                cursor.execute(queryString)
-                result = cursor.fetchall()
-                final_result.append(result)
+    # if request.args.get('Assignment_4') == "Asssignment_4_bar_graph":
+    #     mag1  = request.args.get('mag1')
+    #     mag2 = request.args.get('mag2')
+    #     for i in range(mag1, mag2, 1)
+    #             queryString = '''SELECT count(*) AS counts, mag FROM earthquakeAssignment3 WHERE "mag" BETWEEN ''' + str(i) + ''' and ''' + str(i+1)
+    #             db = sqlConnect()
+    #             cursor = db.cursor()
+    #             cursor.execute(queryString)
+    #             result = cursor.fetchall()
+    #             final_result.append(result)
 
 
 

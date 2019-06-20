@@ -8,7 +8,7 @@ google.charts.setOnLoadCallback(drawBasic);
 function drawBasic() {
 
       var data = google.visualization.arrayToDataTable([
-        ['City', '2010 Population'],
+        ['mag', 'count'],
         {% for info in result%}
             {% if info[1]!=None%}
            ['{{ info[1] }} to {{ info[1]}}', {{ info[0] }}],
@@ -17,14 +17,14 @@ function drawBasic() {
       ]);
 
       var options = {
-        title: 'Population of Largest U.S. Cities',
+        title: 'magnitude vs count',
         chartArea: {width: '50%'},
         hAxis: {
-          title: 'Total Population',
+          title: 'magnitude',
           minValue: 0
         },
         vAxis: {
-          title: 'City'
+          title: 'count'
         }
       };
 

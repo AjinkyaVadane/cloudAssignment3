@@ -9,7 +9,7 @@ conn = pyodbc.connect("Driver={ODBC Driver 17 for SQL Server};Server=tcp:mysqlse
 
 cur = conn.cursor()
 
-with open('quake6.csv', newline='') as csv_file:
+with open('voting_1.csv', newline='') as csv_file:
     reader = csv.reader(csv_file,delimiter = ' ', quotechar='"')
     next(reader, None)
     for row in reader:
@@ -20,7 +20,7 @@ with open('quake6.csv', newline='') as csv_file:
         s = "'"+s+"'"
         #print(s)
         #print(s[len(s)])
-        query = "insert into quakequiz3updated2 values("+s+")"
+        query = "insert into TBquizupdated4 values("+s+")"
         print(query)
         break
 
@@ -29,8 +29,8 @@ params = urllib.parse.quote_plus("Driver={ODBC Driver 17 for SQL Server};Server=
 engine = create_engine("mssql+pyodbc:///?odbc_connect=%s" % params)
 
 #print(engine.execute("SELECT * FROM earthquake").fetchall())
-df = pd.read_csv("quake6.csv",sep=',',quotechar='"',encoding='utf8')
-df.to_sql('quakequiz3updated2',con=engine,index=False,if_exists='append')
+df = pd.read_csv("voting_1.csv",sep=',',quotechar='"',encoding='utf8')
+df.to_sql('TBquizupdated4',con=engine,index=False,if_exists='append')
 print('Success')
 #print(df)
 #print(data.head())

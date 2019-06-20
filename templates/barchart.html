@@ -8,12 +8,14 @@ google.charts.setOnLoadCallback(drawBasic);
 function drawBasic() {
 
       var data = google.visualization.arrayToDataTable([
-        ['City', '2010 Population'],
+        ['mag', 'count'],
+
         {% for info in result%}
             {% if info[1]!=None%}
            ['{{ info[1] }} to {{ info[1]}}', {{ info[0] }}],
             {%endif%}
         {%endfor%}
+
       ]);
 
       var options = {
@@ -32,6 +34,13 @@ function drawBasic() {
 
       chart.draw(data, options);
     }
+
+
+
+
+
+
+
     </script>
   </head>
   <body>

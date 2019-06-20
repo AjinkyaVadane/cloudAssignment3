@@ -25,7 +25,7 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     # a = [{'a':'abc'}, {'b':'pqr'}, {'c':'xyz'}]
-    a = [{"a":'abc'}, {"b":'pqr'}, {"c":'xyz'}]
+    #a = [{"a":'abc'}, {"b":'pqr'}, {"c":'xyz'}]
     #return render_template('test.html', data=json.dumps(a))
     return render_template('client_homePage.html')
 # method to connect to Db
@@ -430,6 +430,25 @@ def routerFunction():
         print('..........',result)
         db.close()
         return render_template('piechart.html', result = result)
+
+
+    if request.args.get('Quiz4_Q1') == "Quiz4_Q1":
+        pop1 = request.args.get('pop1')
+        pop2 = request.args.get('pop2')
+        queryString = '''SELECT StateName FROM TBquizupdated4 WHERE TotalPop BETWEEN ''' + pop1 + ''' and ''' + pop2
+        db = sqlConnect()
+        cursor = db.cursor()
+        cursor.execute(queryString)
+        result = cursor.fetchall()
+        print('result',result)
+        db.close()
+        return render_template('custom_table.html', data = result)
+
+
+
+
+
+
 
 
 

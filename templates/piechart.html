@@ -11,7 +11,7 @@
       function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['magnitude', 'count'],
+          ['population', 'states'],
           {% for info in result%}
             {% if info[1]!=None%}
            ['{{ info[0] }}', {{ info[1] }}],
@@ -21,7 +21,7 @@
 
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'total population'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('pie_material'));

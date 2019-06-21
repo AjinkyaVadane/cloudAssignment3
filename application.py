@@ -440,9 +440,35 @@ def routerFunction():
         cursor = db.cursor()
         cursor.execute(queryString)
         result = cursor.fetchall()
-        print('result',result)
+        print('result', result)
         db.close()
         return render_template('custom_table.html', data = result)
+
+
+    if request.args.get('Quiz4_Q2') == "Quiz4_Q2":
+        row=[]
+        step = int(request.args.get('pop_range'))
+        rows = []
+        start = 0
+        while (start <= 100):
+            step_new = start + step
+            print('step_new......', step_new)
+            queryString ="select count(*) from TBquizupdated4 where TotalPop  between '" + str(start) + "' and '" + str(
+                step_new) + "' "
+            #queryString = "select count(*) from TBquizupdated4 where TotalPop  between" + i + " and " + step_new
+            db = sqlConnect()
+            cursor = db.cursor()
+            cursor.execute(queryString)
+            result = cursor.fetchone()
+            print(result)
+            # while row:
+            #     rows.append([start + step, row[0]])
+            #     row = cursor.fetchone()
+            #     print(row)
+            #i = start + step
+        return render_template('quest7.html', result=result)
+
+
 
 
 

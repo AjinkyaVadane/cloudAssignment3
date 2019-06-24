@@ -8,6 +8,8 @@ from datetime import datetime
 import json
 from datetime import timedelta
 import random
+import pandas as pd
+import matplotlib.pyplot as plt
 
 
 #port = int(os.getenv("VCAP_APP_PORT"))
@@ -108,6 +110,17 @@ def readFromCache(cache, isCacheOnboolean, cursor, queryString):
 def deleteCache(delete_cache_string):
     r.delete(delete_cache_string)
     return delete_cache_string
+
+
+def convert_fig_to_html(fig):
+    from io import BytesIO
+    figfile = BytesIO()
+    plt.savefig(figfile, format='png')
+    figfile.seek(0)  # rewind to beginning of file
+    import base64
+    # figdata_png = base64.b64encode(figfile.read())
+    figdata_png = base64.b64encode(figfile.getvalue())
+    return figdata_png
 
 
 
@@ -446,28 +459,33 @@ def routerFunction():
 
 
     if request.args.get('Quiz4_Q2') == "Quiz4_Q2":
-        row=[]
-        step = int(request.args.get('pop_range'))
-        rows = []
-        start = 0
-        while (start <= 100):
+        mlist = []
 
-            step_new = start + step
-            print('step_new......', step_new)
-            queryString ="select count(*) from TBquizupdated4 where TotalPop  between "+str(start)+" and "+ str(step_new);
-            #queryString = "select count(*) from TBquizupdated4 where TotalPop  between" + i + " and " + step_new
+        pop1 = int(request.args.get('pop1'))
+        pop2 = int(request.args.get('pop2'))
+        interval=int(request.args.get('intv'))
+        for i in range(pop1,pop2,interval):
+            l1 = []
+            l = []
+            query = "SELECT TotalPop FROM TBquizupdated4 where TotalPop >"+str(i)+" and TotalPop<="+str(i+interval)+""
+            print(query)
             db = sqlConnect()
             cursor = db.cursor()
-            cursor.execute(queryString)
-            result = cursor.fetchone()
-            print(result)
-            start = step_new;
-            # while row:
-            #     rows.append([start + step, row[0]])
-            #     row = cursor.fetchone()
-            #     print(row)
-            #i = start + step
-        return render_template('quest7.html', result=result)
+            cursor.execute(query)
+            rows = cursor.fetchone()
+            l = str(i) + "--" + str(i + interval)
+            l1.append(l)
+            print(l1)
+            l1.append(rows[0])
+            print(l1)
+            mlist.append(l1)
+            y = pd.DataFrame(mlist)
+            print(y[1])
+            fig = plt.figure()
+            plt.pie(y[1], autopct='%1.1f%%', labels=y[0])
+            plt.legend()
+            plot = convert_fig_to_html(fig)
+        return render_template('quest6-1.html', data=plot.decode('utf8'))
 
     if request.args.get('Quiz4_Q8') == "Quiz4_Q8":
         num = request.args.get('num')

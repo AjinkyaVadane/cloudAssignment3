@@ -1,5 +1,7 @@
 Flask==0.12.2
 pyodbc==4.0.26
 redis==3.2.1
+matplotlib
+pandas
 
 

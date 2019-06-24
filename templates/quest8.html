@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        colors = ['red', 'blue', 'gree', 'yellow']
+        function drawChart() {
+            var list = [['num', 'cal']];
+            var chartsData = {{ result }
+        };
+        console.log(chartsData);
+        for (i = 0; i <= chartsData; i++) {
+            let val = ((i * i * i) % 10);
+            info = [val, i];
+            console.log(info)
+            list.push(info);
+        }
+
+        var data = google.visualization.arrayToDataTable(list);
+
+        var options = {
+            title: 'My Magnitude Range',
+            colors: ['green', 'blue', 'yellow', 'black']
+        };
+
+        // var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        var chart2 = new google.visualization.BarChart(document.getElementById('piechart2'));
+        // var chart3 = new google.visualization.ScatterChart(document.getElementById('piechart3'));
+        // var chart4 = new google.visualization.LineChart(document.getElementById('piechart4'));
+
+        // chart.draw(data, options);
+        chart2.draw(data, options);
+            // chart3.draw(data, options);
+            // chart4.draw(data, options);
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <b>
+            Vadane,Ajinkya : 1001657016
+        </b>
+    </header>
+
+
+    <!-- <div id="piechart" style="width: 900px; height: 500px;"></div> -->
+    <div id="piechart2" style="width: 900px; height: 500px;"></div>
+    <!-- <div id="piechart3" style="width: 900px; height: 500px;"></div> -->
+    <!-- <div id="piechart4" style="width: 900px; height: 500px;"></div>  -->
+</body>
+
+</html>

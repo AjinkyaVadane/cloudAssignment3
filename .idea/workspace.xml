@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="36aacdb8-1e74-40f6-8c5d-9763629cba7a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/client_homePage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/client_homePage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/quest8.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/quest8.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,14 +35,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="476" lean-forward="true" selection-start-line="476" selection-end-line="476" />
+            <state relative-caret-position="293">
+              <caret line="471" column="50" lean-forward="true" selection-start-line="471" selection-start-column="50" selection-end-line="471" selection-end-column="50" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/quest8.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -63,7 +71,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/quest7.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
+            <state relative-caret-position="564">
               <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -157,6 +165,7 @@
         <option value="$PROJECT_DIR$/templates/piechart.html" />
         <option value="$PROJECT_DIR$/application.py" />
         <option value="$PROJECT_DIR$/templates/quest7.html" />
+        <option value="$PROJECT_DIR$/templates/quest8.html" />
       </list>
     </option>
   </component>
@@ -328,22 +337,22 @@
       <workItem from="1561077513125" duration="2632000" />
       <workItem from="1561265214856" duration="3188000" />
       <workItem from="1561348054320" duration="15000" />
-      <workItem from="1561414210441" duration="868000" />
+      <workItem from="1561414210441" duration="1293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162745000" />
+    <option name="totallyTimeSpent" value="163170000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49918434" visible="true" weight="0.1380597" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49918434" visible="true" weight="0.1380597" />
       <window_info id="Favorites" order="1" sideWeight="0.5008157" side_tool="true" weight="0.14552239" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" visible="true" weight="0.27843988" />
+      <window_info anchor="bottom" id="Terminal" order="1" visible="true" weight="0.27843988" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="4" weight="0.48970747" />
@@ -646,16 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/quest7.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/client_homePage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -683,13 +682,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/quest7.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="22" column="10" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="476" lean-forward="true" selection-start-line="476" selection-end-line="476" />
+        <state relative-caret-position="293">
+          <caret line="471" column="50" lean-forward="true" selection-start-line="471" selection-start-column="50" selection-end-line="471" selection-end-column="50" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/quest8.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
         </state>
       </provider>
     </entry>
